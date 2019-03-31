@@ -1,0 +1,10 @@
+<footer id="footer" style="text-align: center;">
+  <% if (theme.sidebar === 'bottom'){ %>
+    <%- partial('_partial/sidebar') %>
+  <% } %>
+  <div class="outer">
+    <div class="beian">
+      <a href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备16017823号</a> &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %>
+    </div>
+  </div>
+</footer>
