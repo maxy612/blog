@@ -78,7 +78,7 @@ mouseenter: 鼠标移入事件所绑定的元素时触发（不含子元素）
 
 ---
 
-### 3. script 标签中 async 和 defer 的作用
+### 3. "script" 标签中 "async" 和 "defer" 的作用
 
 在浏览器解析 html 文档构建 dom 树的过程中，如果遇到了 script 标签，正常情况下会暂停 dom 树构建，去请求 script 中的资源并且执行，这样会阻塞 dom 树的构建进而影响渲染。
 
