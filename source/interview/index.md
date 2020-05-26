@@ -87,3 +87,48 @@ async 和 defer 表示该 script 中的资源为非关键资源，使得浏览�
 不同的是，async: 异步加载 js 资源，加载完之后立即执行；defer: 异步加载 js 资源，在 DOMContentLoaded 事件之前执行
 
 ---
+
+### 4. Web 性能优化策略(简述点)
+
+主要从网络层面、浏览器渲染层面、服务端优化以及打包构建四个方面来讲，主要包括下边几点：
+
+#### 网络
+
+- DNS 缓存(一般都有)
+- 资源缓存(配置正确的缓存策略，强缓存，协商缓存)
+- 静态资源 CDN
+- 减少 http 请求数量(合理合并 js,css,img 文件，资源懒加载(图片，单页应用组件)，内联部分 js, css 资源)
+- 减少 http 请求大小(
+  js: 代码压缩混淆，去语义化, 去注释
+  css: 代码压缩
+  img: 小图片合并或者内联资源
+  )
+
+#### 浏览器渲染
+
+1. 减少回流和重绘
+   - 减少回流：
+   * 避免使用 table 布局
+   * 使用文档碎片，避免多次操作 DOM
+   * 避免在循环中获取元素尺寸信息
+   * 设置样式时通过 class 来设置
+   * 动画元素脱离文档流(absolute 或者 fixed 布局)
+   * 动画元素自成一层(translate 取代 top 或者 marginTop.通过设置 3d 变换或者 will-change 等)
+   - 减少重绘：
+   * 使用 opacity 而不是 visibility: hidden;
+2. css 资源位于 link 中，script 位于 body 底部（加快 DOM 树和 CSSOM 树的构建，加快渲染， script 部分资源可加 async 和 defer，不阻塞 DOM 树的构建）
+
+#### 打包构建
+
+- webpack 公共模块抽取(配置 optimize/commonChunks)
+- 库代码采用 cdn 资源，不打包进业务包（或者单独打包）
+- css,js uglify。
+- 资源按需引入，分块打包, 避免主业务包过大。import
+- tree shaking。通过静态分析，只打包用到的资源模块
+
+#### 服务端
+
+- 服务端首屏渲染(减少资源加载和请求，便于 seo，降低白屏时间)
+- 合理设置缓存
+
+---
