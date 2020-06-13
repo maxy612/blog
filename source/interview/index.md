@@ -132,3 +132,15 @@ async 和 defer 表示该 script 中的资源为非关键资源，使得浏览�
 - 合理设置缓存
 
 ---
+
+### 5. absolute定位是相对于什么元素定位的？
+
+当position设置为absolute时，是相对于其元素最近的非static模式的父元素进行定位的。
+
+---
+
+### 6. padding-top和margin-top为百分比时，是相对于什么取值的
+
+两者都是相对于最近父级块状元素的width变化取值的。
+
+---
